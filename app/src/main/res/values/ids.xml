@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="output" type="id">output</item>
+    <item name="input" type="id">input</item>
+    <item name="button_dot" type="id">button_dot</item>
+    <item name="button_para2" type="id">button_para2</item>
+    <item name="button_para1" type="id">button_para1</item>
+    <item name="button_clear" type="id">button_clear</item>
+    <item name="button_sub" type="id">button_sub</item>
+    <item name="button_add" type="id">button_add</item>
+    <item name="button_divide" type="id">button_divide</item>
+    <item name="button_multi" type="id">button_multi</item>
+    <item name="button_equal" type="id">button_equal</item>
+</resources>
