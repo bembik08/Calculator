@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
+
 import static ru.geekbrains.calculator.R.string.error;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
     private Button b1;
     private Button b2;
@@ -30,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private Button b_dot;
     private Button b_para1;
     private Button b_para2;
-    private TextView t1;
-    private TextView t2;
+    private TextView tInput;
+    private TextView tOutput;
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
     private final char MULTIPLICATION = '*';
@@ -49,267 +52,207 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         viewSetup();
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "1");
+        b1.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s1", tInput.getText().toString()));
+        });
+
+        b2.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s2", tInput.getText().toString()));
+        });
+
+        b3.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s3", tInput.getText().toString()));
+        });
+
+        b4.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s4", tInput.getText().toString()));
+        });
+
+        b5.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s5", tInput.getText().toString()));
+        });
+
+        b6.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s6", tInput.getText().toString()));
+        });
+
+        b7.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s7", tInput.getText().toString()));
+        });
+
+        b8.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s8", tInput.getText().toString()));
+        });
+
+        b9.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s9", tInput.getText().toString()));
+        });
+
+        b0.setOnClickListener((View view) -> {
+            ifErrorOnOutput();
+            exceedLength();
+            tInput.setText(String.format("%s0", tInput.getText().toString()));
+        });
+
+        b_dot.setOnClickListener((View view) -> {
+            exceedLength();
+            tInput.setText(String.format("%s.", tInput.getText().toString()));
+        });
+
+        b_para1.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                ACTION = MODULUS;
+                operation();
+                if (!ifReallyDecimal()) {
+                    tOutput.setText(MessageFormat.format("{0}%", val1));
+                } else {
+                    tOutput.setText(MessageFormat.format("{0}%", (int) val1));
+                }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "2");
+        b_add.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                ACTION = ADDITION;
+                operation();
+                if (!ifReallyDecimal()) {
+                    tOutput.setText(MessageFormat.format("{0}+", val1));
+                } else {
+                    tOutput.setText(MessageFormat.format("{0}+", (int) val1));
+                }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "3");
-            }
-        });
-
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "4");
-            }
-        });
-
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "5");
-            }
-        });
-
-        b6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "6");
-            }
-        });
-
-        b7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "7");
-            }
-        });
-
-        b8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "8");
-            }
-        });
-
-        b9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "9");
-            }
-        });
-
-        b0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ifErrorOnOutput();
-                exceedLength();
-                t1.setText(t1.getText().toString() + "0");
-            }
-        });
-
-        b_dot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                exceedLength();
-                t1.setText(t1.getText().toString() + ".");
-            }
-        });
-
-        b_para1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    ACTION = MODULUS;
-                    operation();
+        b_sub.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                ACTION = SUBTRACTION;
+                operation();
+                if (tInput.getText().length() > 0)
                     if (!ifReallyDecimal()) {
-                        t2.setText(val1 + "%");
+                        tOutput.setText(MessageFormat.format("{0}-", val1));
                     } else {
-                        t2.setText((int) val1 + "%");
+                        tOutput.setText(MessageFormat.format("{0}-", (int) val1));
                     }
-                    t1.setText(null);
-                } else {
-                    t2.setText(error);
-                }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    ACTION = ADDITION;
-                    operation();
-                    if (!ifReallyDecimal()) {
-                        t2.setText(val1 + "+");
-                    } else {
-                        t2.setText((int) val1 + "+");
-                    }
-                    t1.setText(null);
+        b_multi.setOnClickListener(view -> {
+            if (tInput.getText().length() > 0) {
+                ACTION = MULTIPLICATION;
+                operation();
+                if (!ifReallyDecimal()) {
+                    tOutput.setText(MessageFormat.format("{0}×", val1));
                 } else {
-                    t2.setText(error);
+                    tOutput.setText(MessageFormat.format("{0}×", (int) val1));
                 }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b_sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    ACTION = SUBTRACTION;
-                    operation();
-                    if (t1.getText().length() > 0)
-                        if (!ifReallyDecimal()) {
-                            t2.setText(val1 + "-");
-                        } else {
-                            t2.setText((int) val1 + "-");
-                        }
-                    t1.setText(null);
+        b_divide.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                ACTION = DIVISION;
+                operation();
+                if (ifReallyDecimal()) {
+                    tOutput.setText(MessageFormat.format("{0}/", (int) val1));
                 } else {
-                    t2.setText(error);
+                    tOutput.setText(MessageFormat.format("{0}/", val1));
                 }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b_multi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    ACTION = MULTIPLICATION;
-                    operation();
-                    if (!ifReallyDecimal()) {
-                        t2.setText(val1 + "×");
-                    } else {
-                        t2.setText((int) val1 + "×");
-                    }
-                    t1.setText(null);
-                } else {
-                    t2.setText(error);
-                }
+        b_para2.setOnClickListener((View view) -> {
+            if (!tOutput.getText().toString().isEmpty() || !tInput.getText().toString().isEmpty()) {
+                val1 = Double.parseDouble(tInput.getText().toString());
+                ACTION = EXTRA;
+                tOutput.setText(MessageFormat.format("-{0}", tInput.getText().toString()));
+                tInput.setText("");
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b_divide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    ACTION = DIVISION;
-                    operation();
-                    if (ifReallyDecimal()) {
-                        t2.setText((int) val1 + "/");
-                    } else {
-                        t2.setText(val1 + "/");
-                    }
-                    t1.setText(null);
+        b_equal.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                operation();
+                ACTION = EQU;
+                if (!ifReallyDecimal()) {
+                    tOutput.setText(/*t2.getText().toString() + String.valueOf(val2) +
+                    "=" + */String.valueOf(val1));
                 } else {
-                    t2.setText(error);
+                    tOutput.setText(/*t2.getText().toString() + String.valueOf(val2) +
+                    "=" + */String.valueOf((int) val1));
                 }
+                tInput.setText(null);
+            } else {
+                tOutput.setText(error);
             }
         });
 
-        b_para2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!t2.getText().toString().isEmpty() || !t1.getText().toString().isEmpty()) {
-                    val1 = Double.parseDouble(t1.getText().toString());
-                    ACTION = EXTRA;
-                    t2.setText("-" + t1.getText().toString());
-                    t1.setText("");
-                } else {
-                    t2.setText(error);
-                }
-            }
-        });
-
-        b_equal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    operation();
-                    ACTION = EQU;
-                    if (!ifReallyDecimal()) {
-                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) +
-                        "=" + */String.valueOf(val1));
-                    } else {
-                        t2.setText(/*t2.getText().toString() + String.valueOf(val2) +
-                        "=" + */String.valueOf((int) val1));
-                    }
-                    t1.setText(null);
-                } else {
-                    t2.setText(error);
-                }
-            }
-        });
-
-        b_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (t1.getText().length() > 0) {
-                    CharSequence name = t1.getText().toString();
-                    t1.setText(name.subSequence(0, name.length() - 1));
-                } else {
-                    val1 = Double.NaN;
-                    val2 = Double.NaN;
-                    t1.setText("");
-                    t2.setText("");
-                }
-            }
-        });
-
-        b_clear.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
+        b_clear.setOnClickListener((View view) -> {
+            if (tInput.getText().length() > 0) {
+                CharSequence name = tInput.getText().toString();
+                tInput.setText(name.subSequence(0, name.length() - 1));
+            } else {
                 val1 = Double.NaN;
                 val2 = Double.NaN;
-                t1.setText("");
-                t2.setText("");
-                return true;
+                tInput.setText("");
+                tOutput.setText("");
             }
+        });
+
+        b_clear.setOnLongClickListener(view -> {
+            val1 = Double.NaN;
+            val2 = Double.NaN;
+            tInput.setText("");
+            tOutput.setText("");
+            return true;
         });
     }
 
     private void viewSetup() {
-        b1 = findViewById(R.id.button1);
-        b2 = findViewById(R.id.button2);
-        b3 = findViewById(R.id.button3);
-        b4 = findViewById(R.id.button4);
-        b5 = findViewById(R.id.button5);
-        b6 = findViewById(R.id.button6);
-        b7 = findViewById(R.id.button7);
-        b8 = findViewById(R.id.button8);
-        b9 = findViewById(R.id.button9);
-        b0 = findViewById(R.id.button0);
+        b1 = findViewById(R.id.button_1);
+        b2 = findViewById(R.id.button_2);
+        b3 = findViewById(R.id.button_3);
+        b4 = findViewById(R.id.button_4);
+        b5 = findViewById(R.id.button_5);
+        b6 = findViewById(R.id.button_6);
+        b7 = findViewById(R.id.button_7);
+        b8 = findViewById(R.id.button_8);
+        b9 = findViewById(R.id.button_9);
+        b0 = findViewById(R.id.button_0);
         b_equal = findViewById(R.id.button_equal);
         b_multi = findViewById(R.id.button_multi);
         b_divide = findViewById(R.id.button_divide);
@@ -319,16 +262,15 @@ public class MainActivity extends AppCompatActivity {
         b_dot = findViewById(R.id.button_dot);
         b_para1 = findViewById(R.id.button_para1);
         b_para2 = findViewById(R.id.button_para2);
-        t1 = findViewById(R.id.input);
-        t2 = findViewById(R.id.output);
+        tInput = findViewById(R.id.input);
+        tOutput = findViewById(R.id.output);
     }
 
     private void operation() {
         if (!Double.isNaN(val1)) {
-            if (t2.getText().toString().charAt(0) == '-') {
-                val1 = (-1) * val1;
+            switch (tOutput.getText().toString()) {
             }
-            val2 = Double.parseDouble(t1.getText().toString());
+            val2 = Double.parseDouble(tInput.getText().toString());
 
             switch (ACTION) {
                 case ADDITION:
@@ -353,15 +295,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         } else {
-            val1 = Double.parseDouble(t1.getText().toString());
+            val1 = Double.parseDouble(tInput.getText().toString());
         }
     }
 
     // Удалить сообщение об ошибке, которое там написано
     private void ifErrorOnOutput() {
-        if (t2.getText().toString().equals("Error")) {
-            t2.setText("");
-        }
+        tOutput.getText().toString();
     }
 
     // Независимо от того, является ли значение двойным или нет
@@ -369,41 +309,10 @@ public class MainActivity extends AppCompatActivity {
         return val1 == (int) val1;
     }
 
-    private void noOperation() {
-        String inputExpression = t2.getText().toString();
-        if (!inputExpression.isEmpty() && !inputExpression.equals("Error")) {
-            if (inputExpression.contains("-")) {
-                inputExpression = inputExpression.replace("-", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("+")) {
-                inputExpression = inputExpression.replace("+", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("/")) {
-                inputExpression = inputExpression.replace("/", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("%")) {
-                inputExpression = inputExpression.replace("%", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-            if (inputExpression.contains("×")) {
-                inputExpression = inputExpression.replace("×", "");
-                t2.setText("");
-                val1 = Double.parseDouble(inputExpression);
-            }
-        }
-    }
-
     // Сделать текст мельче, если много цифр
     private void exceedLength() {
-        if (t1.getText().toString().length() > 10) {
-            t1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        if (tInput.getText().toString().length() > 10) {
+            tInput.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         }
     }
 }

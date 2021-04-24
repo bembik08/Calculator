@@ -20,4 +20,5 @@
     <string name="dot">.</string>
     <string name="error">Error</string>
     <string name="plus_minus">+/-</string>
+    <string name="result_template">%s%s</string>
 </resources>
