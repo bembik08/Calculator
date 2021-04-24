@@ -12,7 +12,6 @@ import java.text.MessageFormat;
 
 import static ru.geekbrains.calculator.R.string.error;
 
-@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
     private Button b1;
     private Button b2;
